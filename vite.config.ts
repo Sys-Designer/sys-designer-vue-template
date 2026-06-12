@@ -46,6 +46,7 @@ export default defineConfig(({ command, mode }) => {
     resolve: {
       alias: {
         '@': pathResolve('src'),
+        '@common': pathResolve('common'),
       }
     },
     css: {
