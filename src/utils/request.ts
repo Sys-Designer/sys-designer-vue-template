@@ -45,7 +45,6 @@ export default service
 
 export const request = {
   service: service,
-  onErrorResponse: (error: AxiosError)=>{
-    console.log(error)
+  onErrorResponse: (_error: AxiosError)=>{
   }
 }
