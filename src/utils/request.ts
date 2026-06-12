@@ -1,5 +1,5 @@
 import { useGlobal, useUser } from '@/store';
-import axios, { InternalAxiosRequestConfig } from 'axios';
+import axios, { AxiosError, InternalAxiosRequestConfig } from 'axios';
 
 const service = axios.create({
   baseURL: import.meta.env.VITE_APP_BASE_URL,
@@ -47,3 +47,10 @@ service.interceptors.request.use(
 // )
 
 export default service
+
+export const request = {
+  service: service,
+  onErrorResponse: (error: AxiosError)=>{
+    console.log(error)
+  }
+}

@@ -8,6 +8,7 @@ import { NaiveUiResolver } from 'unplugin-vue-components/resolvers';
 import { resolve } from 'path';
 import { createHtmlPlugin } from 'vite-plugin-html';
 import { viteMockServe } from 'vite-plugin-mock';
+import { libResolves, libModules } from './common/lib.config';
 
 const pathResolve = (dir: string) => resolve(__dirname, dir)
 
@@ -30,7 +31,6 @@ export default defineConfig(({ command, mode }) => {
           'vue',
           'vue-router',
           'pinia',
-          // 自动导入 naive 函数API，无需手动 import
           { 'naive-ui': ['useDialog', 'useMessage', 'useNotification', 'useLoadingBar', 'useModal'] }
         ],
         dts: 'src/types/auto-imports.d.ts',
@@ -47,7 +47,12 @@ export default defineConfig(({ command, mode }) => {
       alias: {
         '@': pathResolve('src'),
         '@common': pathResolve('common'),
-      }
+        ...libResolves,
+        '@common-impl': pathResolve('src'),
+      },
+    },
+    optimizeDeps: {
+      include: libModules.map(it=>it.name),
     },
     css: {
       preprocessorOptions: {
