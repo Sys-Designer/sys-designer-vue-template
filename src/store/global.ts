@@ -35,6 +35,7 @@ export const useGlobal = defineStore('global', {
     params: state => state.data.params,
     pluginBaseUrl: state => state.data.pluginBaseUrl,
     routerName: state => state.data.routerName,
+    securityKey: state => state.data.securityKey,
   },
   actions: {
     getProjectId() {
@@ -42,6 +43,9 @@ export const useGlobal = defineStore('global', {
     },
     setProjectId(projectId: string) {
       this.data.projectId = projectId;
+    },
+    setSecurityKey(key: string) {
+      this.data.securityKey = key;
     },
     setQuery(query: any) {
       this.data.query = query || {};

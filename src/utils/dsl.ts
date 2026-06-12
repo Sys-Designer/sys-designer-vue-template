@@ -46,7 +46,7 @@ function buildDslArgs(args: Array<any>): string {
        if (isObject(value)) {
         let str = key + ':{'
         const keys = Object.keys(value)
-        keys.forEach((vk, k) => {
+        keys.forEach((vk, _k) => {
           let v = value[vk]
           if(Array.isArray(v)){
             v = '['+v.join(',')+']';

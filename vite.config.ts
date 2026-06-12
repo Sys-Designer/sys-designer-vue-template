@@ -9,6 +9,7 @@ import { resolve } from 'path';
 import { createHtmlPlugin } from 'vite-plugin-html';
 import { viteMockServe } from 'vite-plugin-mock';
 import { libResolves, libModules } from './common/lib.config';
+import viteCompression from 'vite-plugin-compression'; // 新增gzip插件
 
 const pathResolve = (dir: string) => resolve(__dirname, dir)
 
@@ -37,11 +38,22 @@ export default defineConfig(({ command, mode }) => {
         eslintrc: { enabled: true }
       }),
       Components({
-        resolvers: [NaiveUiResolver()], // 自动识别 <n-xxx> 组件并按需引入+加载样式
+        resolvers: [NaiveUiResolver()],
         dts: 'src/types/components.d.ts'
       }),
       createHtmlPlugin({ inject: { data: { title: env.VITE_APP_TITLE } } }),
-      viteMockServe({ mockPath: 'mock', localEnabled: isDev, prodEnabled: false, watchFiles: true })
+      viteMockServe({ mockPath: 'mock', localEnabled: isDev, prodEnabled: false, watchFiles: true }),
+      // ========== gzip 配置 ==========
+      viteCompression({
+        // 生成 .gz 文件
+        algorithm: 'gzip',
+        // 只压缩大于 10kb 的文件，小文件没必要
+        threshold: 10240,
+        // 是否删除原文件（推荐 false，nginx 自动优先读.gz）
+        deleteOriginFile: false,
+        // 匹配需要压缩的后缀
+        filter: /\.(js|css|json|html|svg|ttf)$/i
+      })
     ],
     resolve: {
       alias: {

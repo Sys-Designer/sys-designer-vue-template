@@ -1,5 +1,7 @@
 import { useGlobal, useUser } from '@/store';
-import axios, { AxiosError, InternalAxiosRequestConfig } from 'axios';
+import axios, { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
+import { createDiscreteApi } from 'naive-ui'
+const { message } = createDiscreteApi(['message']);
 
 const service = axios.create({
   baseURL: import.meta.env.VITE_APP_BASE_URL,
@@ -24,27 +26,20 @@ service.interceptors.request.use(
 )
 
 // 响应拦截器
-// service.interceptors.response.use(
-//   (res: AxiosResponse<any>) => {
-//     // const { code, message } = res.data
-//     // 业务状态码统一处理
-//     // if (code !== 200) {
-//     //   $message.error(message || '接口请求失败')
-//     //   // 401 token过期
-//     //   if (code === 401) {
-//     //     removeToken()
-//     //     location.reload()
-//     //   }
-//     //   return Promise.reject(res.data)
-//     // }
-//     return res.data
-//   },
-//   err => {
-//     // const msg = err.response?.data?.message || '服务器异常'
-//     // $notification.error({ title: '请求错误', content: msg })
-//     return Promise.reject(err)
-//   }
-// )
+service.interceptors.response.use(
+  (res: AxiosResponse<any>) => {
+    return res
+  },
+  err => {
+    const data = err.response?.data;
+    // const code = data?.code;
+    const msg = data?.message;
+    if(msg){
+      message.error(msg)
+    }
+    return Promise.reject(err)
+  }
+)
 
 export default service
 

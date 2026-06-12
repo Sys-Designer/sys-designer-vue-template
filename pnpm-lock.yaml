@@ -14,6 +14,9 @@ dependencies:
   axios:
     specifier: ^1.7.7
     version: 1.17.0
+  crypto-js:
+    specifier: ^4.2.0
+    version: 4.2.0
   dayjs:
     specifier: ^1.11.13
     version: 1.11.21
@@ -26,6 +29,9 @@ dependencies:
   naive-ui:
     specifier: ^2.40.1
     version: 2.44.1(vue@3.5.38)
+  node-forge:
+    specifier: ^1.4.0
+    version: 1.4.0
   pinia:
     specifier: ^2.2.4
     version: 2.3.1(typescript@5.9.3)(vue@3.5.38)
@@ -40,6 +46,9 @@ dependencies:
     version: 4.6.4(vue@3.5.38)
 
 devDependencies:
+  '@types/crypto-js':
+    specifier: ^4.2.2
+    version: 4.2.2
   '@types/js-cookie':
     specifier: ^3.0.6
     version: 3.0.6
@@ -49,6 +58,9 @@ devDependencies:
   '@types/node':
     specifier: ^22.7.5
     version: 22.19.21
+  '@types/node-forge':
+    specifier: ^1.3.14
+    version: 1.3.14
   '@vitejs/plugin-vue':
     specifier: ^5.1.4
     version: 5.2.4(vite@6.4.3)(vue@3.5.38)
@@ -85,6 +97,9 @@ devDependencies:
   vite:
     specifier: ^6.0.0
     version: 6.4.3(@types/node@22.19.21)(sass@1.101.0)(terser@5.48.0)
+  vite-plugin-compression:
+    specifier: ^0.5.1
+    version: 0.5.1(vite@6.4.3)
   vite-plugin-html:
     specifier: ^3.2.2
     version: 3.2.2(vite@6.4.3)
@@ -1152,6 +1167,10 @@ packages:
     dev: true
     optional: true
 
+  /@types/crypto-js@4.2.2:
+    resolution: {integrity: sha512-sDOLlVbHhXpAUAL0YHDUUwDZf3iN4Bwi4W6a0W0b+QcAezUbRtH4FVb+9J4h+XFPW7l/gQ9F8qC7P+Ec4k8QVQ==, tarball: https://registry.npmmirror.com/@types/crypto-js/-/crypto-js-4.2.2.tgz}
+    dev: true
+
   /@types/estree@1.0.9:
     resolution: {integrity: sha512-GhdPgy1el4/ImP05X05Uw4cw2/M93BCUmnEvWZNStlCzEKME4Fkk+YpoA5OiHNQmoS7Cafb8Xa3Pya8m1Qrzeg==, tarball: https://registry.npmmirror.com/@types/estree/-/estree-1.0.9.tgz}
     dev: true
@@ -1172,6 +1191,12 @@ packages:
 
   /@types/lodash@4.17.24:
     resolution: {integrity: sha512-gIW7lQLZbue7lRSWEFql49QJJWThrTFFeIMJdp3eH4tKoxm1OvEPg02rm4wCCSHS0cL3/Fizimb35b7k8atwsQ==, tarball: https://registry.npmmirror.com/@types/lodash/-/lodash-4.17.24.tgz}
+
+  /@types/node-forge@1.3.14:
+    resolution: {integrity: sha512-mhVF2BnD4BO+jtOp7z1CdzaK4mbuK0LLQYAvdOLqHTavxFNq4zA1EmYkpnFjP8HOUzedfQkRnp0E2ulSAYSzAw==, tarball: https://registry.npmmirror.com/@types/node-forge/-/node-forge-1.3.14.tgz}
+    dependencies:
+      '@types/node': 22.19.21
+    dev: true
 
   /@types/node@22.19.21:
     resolution: {integrity: sha512-VMeFBSCKQKmm2swI2kW51SFusDqekC6q9trBCvJ/JliDchFSuoYYKN7yVNjPthP1HKZcx3U1gI/wTcEBjEFKTA==, tarball: https://registry.npmmirror.com/@types/node/-/node-22.19.21.tgz}
@@ -1523,6 +1548,10 @@ packages:
       shebang-command: 2.0.0
       which: 2.0.2
     dev: true
+
+  /crypto-js@4.2.0:
+    resolution: {integrity: sha512-KALDyEYgpY+Rlob/iriUtjV6d5Eq+Y191A5g4UqLAi8CyGP9N1+FdVbkc1SxKc2r4YAYqG8JzO2KGL+AizD70Q==, tarball: https://registry.npmmirror.com/crypto-js/-/crypto-js-4.2.0.tgz}
+    dev: false
 
   /css-render@0.15.14:
     resolution: {integrity: sha512-9nF4PdUle+5ta4W5SyZdLCCmFd37uVimSjg1evcTqKJCyvCEEj12WKzOSBNak6r4im4J4iYXKH1OWpUV5LBYFg==, tarball: https://registry.npmmirror.com/css-render/-/css-render-0.15.14.tgz}
@@ -2498,6 +2527,11 @@ packages:
     dev: true
     optional: true
 
+  /node-forge@1.4.0:
+    resolution: {integrity: sha512-LarFH0+6VfriEhqMMcLX2F7SwSXeWwnEAJEsYm5QKWchiVYVvJyV9v7UDvUv+w5HO23ZpQTXDv/GxdDdMyOuoQ==, tarball: https://registry.npmmirror.com/node-forge/-/node-forge-1.4.0.tgz}
+    engines: {node: '>= 6.13.0'}
+    dev: false
+
   /node-html-parser@5.4.2:
     resolution: {integrity: sha512-RaBPP3+51hPne/OolXxcz89iYvQvKOydaqoePpOgXcrOKZhjVIzmpKZz+Hd/RBO2/zN2q6CNJhQzucVz+u3Jyw==, tarball: https://registry.npmmirror.com/node-html-parser/-/node-html-parser-5.4.2.tgz}
     dependencies:
@@ -3025,6 +3059,19 @@ packages:
       evtd: 0.2.4
       vue: 3.5.38(typescript@5.9.3)
     dev: false
+
+  /vite-plugin-compression@0.5.1(vite@6.4.3):
+    resolution: {integrity: sha512-5QJKBDc+gNYVqL/skgFAP81Yuzo9R+EAf19d+EtsMF/i8kFUpNi3J/H01QD3Oo8zBQn+NzoCIFkpPLynoOzaJg==, tarball: https://registry.npmmirror.com/vite-plugin-compression/-/vite-plugin-compression-0.5.1.tgz}
+    peerDependencies:
+      vite: '>=2.0.0'
+    dependencies:
+      chalk: 4.1.2
+      debug: 4.4.3
+      fs-extra: 10.1.0
+      vite: 6.4.3(@types/node@22.19.21)(sass@1.101.0)(terser@5.48.0)
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
 
   /vite-plugin-html@3.2.2(vite@6.4.3):
     resolution: {integrity: sha512-vb9C9kcdzcIo/Oc3CLZVS03dL5pDlOFuhGlZYDCJ840BhWl/0nGeZWf3Qy7NlOayscY4Cm/QRgULCQkEZige5Q==, tarball: https://registry.npmmirror.com/vite-plugin-html/-/vite-plugin-html-3.2.2.tgz}
