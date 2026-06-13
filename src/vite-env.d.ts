@@ -1,4 +1,6 @@
+// src/env.d.ts
 /// <reference types="vite/client" />
+declare const __IS_ELECTRON__: boolean;
 import type {
   MessageApi,
   DialogApi,
@@ -12,6 +14,12 @@ declare global {
     $dialog: DialogApi
     $notification: NotificationApi
     $loadingBar: LoadingBarApi
+    electronAPI: {
+      sendLoginSuccess: (loginInfo?: Record<string, any>) => void
+      setGlobal: (info?: Record<string, any>) => void
+      closeWindow: () => void
+      minimizeWindow: () => void
+    }
   }
 }
 
@@ -20,3 +28,4 @@ declare module '*.vue' {
   const component: DefineComponent<{}, {}, any>
   export default component
 }
+
