@@ -8,20 +8,16 @@ import { NaiveUiResolver } from 'unplugin-vue-components/resolvers';
 import { resolve } from 'path';
 import { createHtmlPlugin } from 'vite-plugin-html';
 import { viteMockServe } from 'vite-plugin-mock';
+import viteCompression from 'vite-plugin-compression';
 import { libResolves, libModules } from './common/lib.config';
-import viteCompression from 'vite-plugin-compression'; // 新增gzip插件
 
-const pathResolve = (dir: string) => resolve(__dirname, dir)
+const pathResolve = (dir: string) => resolve(__dirname, dir);
 
 export default defineConfig(({ command, mode }) => {
-  const env = loadEnv(mode, process.cwd(), '')
+  const env = loadEnv(mode, process.cwd(), '');
   const isDev = command === 'serve';
   const viteEnv = wrapperEnv(env);
-  const {
-    VITE_PUBLIC_PATH,
-    VITE_PORT,
-    VITE_PROXY,
-  } = viteEnv;
+  const { VITE_PUBLIC_PATH, VITE_PORT, VITE_PROXY } = viteEnv;
 
   return {
     base: VITE_PUBLIC_PATH,
@@ -39,19 +35,14 @@ export default defineConfig(({ command, mode }) => {
       }),
       Components({
         resolvers: [NaiveUiResolver()],
-        dts: 'src/types/components.d.ts'
+        dts: 'src/types/components.d.ts',
       }),
       createHtmlPlugin({ inject: { data: { title: env.VITE_APP_TITLE } } }),
       viteMockServe({ mockPath: 'mock', localEnabled: isDev, prodEnabled: false, watchFiles: true }),
-      // ========== gzip 配置 ==========
       viteCompression({
-        // 生成 .gz 文件
         algorithm: 'gzip',
-        // 只压缩大于 10kb 的文件，小文件没必要
         threshold: 10240,
-        // 是否删除原文件（推荐 false，nginx 自动优先读.gz）
         deleteOriginFile: false,
-        // 匹配需要压缩的后缀
         filter: /\.(js|css|json|html|svg|ttf)$/i
       })
     ],
@@ -62,9 +53,13 @@ export default defineConfig(({ command, mode }) => {
         ...libResolves,
         '@common-impl': pathResolve('src'),
       },
+      dedupe: ['vue', 'naive-ui', 'vue-router', 'pinia']
     },
     optimizeDeps: {
-      include: libModules.map(it=>it.name),
+      include: [
+        ...libModules.filter(it=> it.custom).map(it => it.name), 
+        'naive-ui'
+      ]
     },
     css: {
       preprocessorOptions: {
@@ -100,5 +95,5 @@ export default defineConfig(({ command, mode }) => {
       minify: 'terser',
       terserOptions: { compress: { drop_console: !isDev } }
     }
-  }
-})
+  };
+});

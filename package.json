@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "vite --mode development",
     "build": "tsc && vite build --mode production",
+    "build:electron": "tsc && vite build --mode electron ",
     "build:test": "tsc && vite build --mode test",
     "preview": "vite preview",
     "lint": "eslint . --ext .vue,.ts,.tsx --fix",

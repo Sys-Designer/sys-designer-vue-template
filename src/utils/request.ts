@@ -45,6 +45,7 @@ export default service
 
 export const request = {
   service: service,
-  onErrorResponse: (_error: AxiosError)=>{
+  onErrorResponse: (error: AxiosError, _resolve: any, reject: any)=>{
+    reject(error)
   }
 }
